@@ -11,6 +11,8 @@ def canUnlockAll(boxes):
     keys |= set(boxes[0])
     opend.append(0)
     newkeys = set()
+    if len(opend) == len(boxes):
+        flag = True
     while (len(opend) < len(boxes)):
         newkeys = set()
         if len(keys) == 0:
