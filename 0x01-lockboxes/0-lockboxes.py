@@ -1,29 +1,26 @@
 #!/usr/bin/python3
-""" locked boxes problem solution """
+""" lockeboxes problem """
 
 
 def canUnlockAll(boxes):
+    """ determines if all boxes can opened """
     if type(boxes) != list:
         return False
-    keys = set()
-    opend = []
-    flag = False
-    keys |= set(boxes[0])
-    opend.append(0)
-    newkeys = set()
-    if len(opend) == len(boxes):
-        flag = True
-    while (len(opend) < len(boxes)):
-        newkeys = set()
-        if len(keys) == 0:
-            break
-        for i in keys:
-            if (i < len(boxes)):
-                if (i not in opend):
-                    opend.append(i)
-                    newkeys |= set(boxes[i])
-                    if len(opend) == len(boxes):
-                        flag = True
-                        break
-        keys = newkeys - keys
-    return flag
+    if len(boxes) <= 1:
+        return True
+    length = len(boxes)
+    used_keys = set([1])
+    new_keys = set()
+    opend = 1
+    to_use_keys = set(boxes[0])
+    while len(to_use_keys) != 0:
+        for key in to_use_keys:
+            if (key < length):
+                new_keys = new_keys | set(boxes[key])
+                opend += 1
+        if (opend == length):
+            return True
+        to_use_keys = new_keys - used_keys
+        used_keys |= new_keys
+        new_keys = set()
+    return False
