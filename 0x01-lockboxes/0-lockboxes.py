@@ -16,6 +16,8 @@ def canUnlockAll(boxes):
     while len(to_use_keys) != 0:
         for key in to_use_keys:
             if (key < length):
+                if type(boxes[key]) != list:
+                    return False
                 new_keys = new_keys | set(boxes[key])
                 opend += 1
         if (opend == length):
