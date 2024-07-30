@@ -9,7 +9,7 @@ def canUnlockAll(boxes):
     if len(boxes) <= 1:
         return True
     length = len(boxes)
-    used_keys = set([1])
+    used_keys = set([0])
     new_keys = set()
     opend = 1
     to_use_keys = set(boxes[0])
