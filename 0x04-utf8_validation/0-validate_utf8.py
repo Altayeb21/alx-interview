@@ -15,8 +15,9 @@ def validUTF8(data):
             for i in range(4):
                 if binary[i] == '1':
                     count += 1
-                if count > 4:
-                    return False
+            count -= 1
+            if count > 3:
+                return False
         else:
             if binary[:2] == "10":
                 count -= 1
