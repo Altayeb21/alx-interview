@@ -3,26 +3,36 @@
 
 
 def validUTF8(data):
-    """ validate if a data is utf-8 encoded """
+    """Validate if a data set is a valid UTF-8 encoding."""
     count = 0
     for byte in data:
-        binary = bin(byte & 255)[2:]
-        if len(binary) < 8:
-            if count:
-                return False
-            continue
-        if not count:
-            for i in range(4):
-                if binary[i] == '1':
-                    count += 1
-            count -= 1
-            if count > 3:
+        # Get the binary representation of the byte
+        binary = bin(byte)[2:].rjust(8, '0')
+
+        if count == 0:
+            # Determine the number of leading 1s in the byte
+            if binary.startswith('0'):
+                # Single-byte character (ASCII)
+                continue
+            elif binary.startswith('110'):
+                # 2-byte character
+                count = 1
+            elif binary.startswith('1110'):
+                # 3-byte character
+                count = 2
+            elif binary.startswith('11110'):
+                # 4-byte character
+                count = 3
+            else:
+                # Invalid starting byte
                 return False
         else:
-            if binary[:2] == "10":
+            # Check continuation byte
+            if binary.startswith('10'):
                 count -= 1
-                continue
-            return False
-    if count:
-        return False
-    return True
+            else:
+                # Invalid continuation byte
+                return False
+
+    # Check if all multi-byte sequences are properly closed
+    return count == 0
