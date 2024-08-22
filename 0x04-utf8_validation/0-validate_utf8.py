@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+""" utf-8 validation """
+
+
+def validUTF8(data):
+    """ validate if a data is utf-8 encoded """
+    count = 0
+    for byte in data:
+        binary = bin(byte & 255)[2:]
+        if len(binary) < 8:
+            if count:
+                return False
+            continue
+        if not count:
+            for i in range(4):
+                if binary[i] == '1':
+                    count += 1
+        else:
+            if binary[:2] == "10":
+                count -= 1
+                continue
+            return False
+    return True
