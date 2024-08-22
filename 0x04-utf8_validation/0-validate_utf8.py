@@ -18,8 +18,6 @@ def validUTF8(data):
             count -= 1
             if count > 3:
                 return False
-            if binary[count + 1:] == "0" * (8 - (count + 1)):
-                return False
         else:
             if binary[:2] == "10":
                 count -= 1
