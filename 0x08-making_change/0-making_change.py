@@ -7,11 +7,12 @@ def makeChange(coins, total, memo=None):
     given amount total """
     if total <= 0:
         return 0
+    if len(coins) <= 0:
+        return -1
 
     if memo is None:
         memo = {}
         coins.sort(reverse=True)
-    minimum = -1
     for coin in coins:
         if total - coin >= 0:
             temp = memo.get(total - coin)
@@ -23,5 +24,4 @@ def makeChange(coins, total, memo=None):
                 memo[total - coin] = path
                 if path != -1:
                     return path + 1
-
     return -1
