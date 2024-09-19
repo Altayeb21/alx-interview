@@ -27,7 +27,8 @@ def makeChange(coins: List, total: int, memo: Mapping=None):
                 memo[total - coin] = path
                 if path != -1:
                     return path + 1
-    return -1"""
+    return -1
+    """
     if total <= 0:
         return 0
     check = 0
