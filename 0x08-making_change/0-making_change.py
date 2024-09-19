@@ -7,23 +7,20 @@ def makeChange(coins, total, memo=None):
     given amount total """
     if total <= 0:
         return 0
-    p = 0
 
     if memo is None:
         memo = {}
-    pathes = []
+    minimum = -1
     for coin in coins:
         if total - coin >= 0:
             temp = memo.get(total - coin)
             if temp is not None:
                 if temp != -1:
-                    pathes.append(memo.get(total - coin))
+                    minimum = min(minimum, temp) if minimum != -1 else max(minimum, temp)
             else:
                 path = makeChange(coins, total - coin, memo)
                 memo[total - coin] = path
                 if path != -1:
-                    pathes.append(path)
+                    minimum = min(minimum, temp) if minimum != -1 else max(minimum, path)
 
-    if len(pathes) == 0:
-        return -1
-    return min(pathes) + 1
+    return minimum + 1 if minimum != -1 else minimum
