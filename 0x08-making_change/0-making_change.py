@@ -10,20 +10,18 @@ def makeChange(coins, total, memo=None):
 
     if memo is None:
         memo = {}
-        coins.sort()
+        coins.sort(reverse=True)
     minimum = -1
     for coin in coins:
         if total - coin >= 0:
             temp = memo.get(total - coin)
             if temp is not None:
                 if temp != -1:
-                    minimum = min(minimum, temp) if minimum != -1 else max(minimum, temp)
+                    return temp + 1
             else:
                 path = makeChange(coins, total - coin, memo)
                 memo[total - coin] = path
                 if path != -1:
-                    minimum = min(minimum, temp) if minimum != -1 else max(minimum, path)
-        else:
-            break
+                    return path + 1
 
-    return minimum + 1 if minimum != -1 else minimum
+    return -1
