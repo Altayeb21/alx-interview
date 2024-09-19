@@ -2,7 +2,10 @@
 """ making change problem """
 
 
-def makeChange(coins, total, memo=None):
+from typing import List, Mapping
+
+
+def makeChange(coins: List, total: int, memo: Mapping=None):
     """ determine the fewest number of coins needed to meet a
     given amount total """
     if total <= 0:
