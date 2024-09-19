@@ -7,7 +7,7 @@ from typing import List, Mapping
 
 def makeChange(coins: List, total: int, memo: Mapping=None):
     """ determine the fewest number of coins needed to meet a
-    given amount total """
+    given amount total
     if total <= 0:
         return 0
     if len(coins) <= 0:
@@ -27,4 +27,18 @@ def makeChange(coins: List, total: int, memo: Mapping=None):
                 memo[total - coin] = path
                 if path != -1:
                     return path + 1
+    return -1"""
+    if total <= 0:
+        return 0
+    check = 0
+    temp = 0
+    coins.sort(reverse=True)
+    for i in coins:
+        while check < total:
+            check += i
+            temp += 1
+        if check == total:
+            return temp
+        check -= i
+        temp -= 1
     return -1
