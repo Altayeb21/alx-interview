@@ -4,7 +4,7 @@
 
 def island_perimeter(grid):
     """ calculate island perimeter """
-    if grid is None or !isinstance(grid, list):
+    if grid is None or not isinstance(grid, list):
         return 0
     if len(grid) == 0 or len(grid[0]) == 0:
         return 0
