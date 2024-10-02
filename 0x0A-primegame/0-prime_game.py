@@ -12,6 +12,8 @@ def isWinner(x, nums):
         return None
     if x <= 0:
         return None
+    if x != len(nums):
+        return None
     Ben = 0
     Maria = 0
     round_winner = 2
