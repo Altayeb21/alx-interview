@@ -3,6 +3,7 @@
 
 
 def isWinner(x, nums):
+    """ determine the player winned the most rounds """
     Ben = 0
     Maria = 0
     round_winner = 2
