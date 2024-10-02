@@ -23,9 +23,13 @@ def isWinner(x, nums):
             to_remove = prime
             multiplier = prime
             while to_remove <= num:
-                number_list.remove(to_remove)
-                to_remove = prime * multiplier
-                multiplier += 1
+                try:
+                    number_list.remove(to_remove)
+                    to_remove = prime * multiplier
+                    multiplier += 1
+                except ValueError:
+                    to_remove = prime * multiplier
+                    multiplier += 1
         if round_winner == 2:
             Ben += 1
         else:
