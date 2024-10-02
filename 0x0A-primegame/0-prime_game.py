@@ -16,6 +16,8 @@ def isWinner(x, nums):
     for i in range(x):
         round_winner = 2
         num = nums[i]
+        if type(num) != int:
+            continue
         number_list = [j for j in range(2, num + 1)]
         while len(number_list) > 0:
             round_winner = 1 if round_winner == 2 else 2
