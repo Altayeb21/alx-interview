@@ -8,6 +8,8 @@ def isWinner(x, nums):
         return None
     if type(nums) != list:
         return None
+    if x <= 0:
+        return None
     Ben = 0
     Maria = 0
     round_winner = 2
