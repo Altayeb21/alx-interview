@@ -4,6 +4,8 @@
 
 def isWinner(x, nums):
     """ determine the player winned the most rounds """
+    if x is None or nums is None:
+        return None
     if type(x) != int:
         return None
     if type(nums) != list:
